@@ -74,15 +74,15 @@ class Lexer:
     def __init__(self):
         self.lexer = lexer
 
-    def analisar(self, file_path):
-        tokens = []
+    def obter_tokens(self, file_path):
+        tipos = []
         try:
             with open(file_path, 'r') as file:
                 data = file.read()
                 self.lexer.input(data)
                 for token in self.lexer:
-                    tokens.append({"valor": token.value, "tipo": token.type})
-                tokens.append({"valor": "$", "tipo": "$"})
-                return tokens
+                    tipos.append(token.type)
+                tipos.append("$")
+                return tipos
         except FileNotFoundError:
-            print(f"Arquivo {file_path} não encontrado.")
+            print(f"Arquivo {file_path} não foi encontrado.")
