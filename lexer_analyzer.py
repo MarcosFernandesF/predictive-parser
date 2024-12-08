@@ -5,7 +5,7 @@ tokens = [
     'ID', 'NUM', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE',
     'LT', 'GT', 'LE', 'GE', 'EQ', 'NE',
     'ASSIGN', 'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'COMMA', 'SEMICOLON',
-    'ID_LPAREN'
+    'ID_LPAREN', 'ENDIF'
 ]
 
 # Palavras reservadas
@@ -13,6 +13,7 @@ reservadas = {
     'int': 'INT',
     'if': 'IF',
     'else': 'ELSE',
+    'endif': 'ENDIF',
     'def': 'DEF',
     'print': 'PRINT',
     'return': 'RETURN'
