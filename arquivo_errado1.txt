@@ -1,0 +1,62 @@
+def soma(int a, int b) {
+    int resultado;
+    resultado := a ++ b;
+    return resultado;;
+}
+
+def subtrai(int a, int b) {
+    int resultado;
+    resultado := a - b;
+    return resultado;
+}
+
+def multiplica(int a, int b) {
+    int resultado;
+    resultado := a * b;
+    return resultado;
+}
+
+def divide(int a, int b) {
+    int resultado;
+    resultado := 0;
+    if (b == 0) {
+        return resultado;
+    } endif
+    resultado := a / b;
+    return resultado;
+}
+
+def main() {
+    int x;
+    int y;
+    int resultado1;
+    int resultado2;
+    int resultado3;
+    int resultado4;
+
+    x := 15;
+    y := 5;
+
+    resultado1 := soma(x, y);
+    resultado2 := subtrai(x, y);
+    resultado3 := multiplica(x, y);
+    resultado4 := divide(x, y);
+
+    print resultado1;
+    print resultado2;
+    print resultado3;
+    print resultado4;
+
+    x := 20;
+    y := 4;
+
+    resultado1 := soma(x, y);
+    resultado2 := subtrai(x, y);
+    resultado3 := multiplica(x, y);
+    resultado4 := divide(x, y);
+
+    print resultado1;
+    print resultado2;
+    print resultado3;
+    print resultado4;
+}
