@@ -82,7 +82,7 @@ Para rodar o projeto, siga os passos abaixo:
 3. "caminho-do-arquivo" é o caminho para o arquivo de código fonte que você deseja analisar. Exemplo:
 
    ```bash
-   python3 main.py arquivoce_certo.txt
+   python3 main.py arquivo_certo.txt
    ```
 
 ### Observação: Modo Debug
