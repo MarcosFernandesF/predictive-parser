@@ -3,7 +3,7 @@ import os
 from lexer_analyzer import Lexer
 
 def parse(tokens_de_entrada, tabela_de_parsing, terminais):
-    modo_debug = True;
+    modo_debug = False;
 
     if modo_debug:
         print("Iniciando o parser com os tokens de entrada:", tokens_de_entrada)
@@ -28,7 +28,7 @@ def parse(tokens_de_entrada, tabela_de_parsing, terminais):
             if modo_debug:
                 print(f"MATCH {topo_pilha} com {simbolo_atual}")
         elif topo_pilha in terminais:
-            print(f"ERRO: Símbolo terminal inesperado: {topo_pilha}")
+            print(f"ERRO: Símbolo terminal não está na lista de terminais: {topo_pilha}")
             sucesso = False
             break
         elif topo_pilha not in tabela_de_parsing or simbolo_atual not in tabela_de_parsing[topo_pilha]:

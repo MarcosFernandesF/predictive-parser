@@ -1,0 +1,33 @@
+def eh_maior(int a, int b) {
+    int resultado;
+    if (a > b) {
+        resultado := 1;
+        return resultado;
+    } else {
+        resultado := 0;
+        return resultado;
+    } endif
+}
+
+def main() {
+    int numero1, numero2;
+    int resultado;
+
+    numero1 := 10;
+    numero2 := 5;
+    
+    resultado := eh_maior(numero1, numero2);
+    print resultado;
+
+    numero1 := 3;
+    numero2 := 7;
+    
+    resultado := eh_maior(numero1, numero2);
+    print resultado;
+
+    numero1 := 5;
+    numero2 := 5;
+
+    resultado := eh_maior(numero1, numero2);
+    print resultado;
+}
