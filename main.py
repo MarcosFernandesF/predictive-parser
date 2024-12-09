@@ -3,7 +3,10 @@ import os
 from lexer_analyzer import Lexer
 
 def parse(tokens_de_entrada, tabela_de_parsing, terminais):
-    print("Iniciando o parser com os tokens de entrada:", tokens_de_entrada)
+    modo_debug = True;
+
+    if modo_debug:
+        print("Iniciando o parser com os tokens de entrada:", tokens_de_entrada)
 
     pilha = ["MAIN", "$"]
     indice_simbolo_atual = 0
@@ -14,13 +17,16 @@ def parse(tokens_de_entrada, tabela_de_parsing, terminais):
 
     while topo_pilha != "$":
         simbolo_atual = tokens_de_entrada[indice_simbolo_atual]
-        print(f"\nPilha: {pilha} | Símbolo atual: {simbolo_atual}")
+        
+        if modo_debug:
+            print(f"\nPilha: {pilha} | Símbolo atual: {simbolo_atual}")
 
         if topo_pilha == simbolo_atual:
-            matchs_realizados.append(simbolo_atual)
+            matchs_realizados.append(f"{topo_pilha} == {simbolo_atual}")
             pilha.pop(0)
             indice_simbolo_atual += 1
-            print(f"MATCH {topo_pilha} com {simbolo_atual}")
+            if modo_debug:
+                print(f"MATCH {topo_pilha} com {simbolo_atual}")
         elif topo_pilha in terminais:
             print(f"ERRO: Símbolo terminal inesperado: {topo_pilha}")
             sucesso = False
@@ -31,7 +37,9 @@ def parse(tokens_de_entrada, tabela_de_parsing, terminais):
             break
         else:
             producao = tabela_de_parsing[topo_pilha][simbolo_atual]
-            print(f"Produção encontrada: {producao}")
+
+            if modo_debug:
+                print(f"Produção encontrada: {producao}")
 
             pilha.pop(0)
 
@@ -40,20 +48,24 @@ def parse(tokens_de_entrada, tabela_de_parsing, terminais):
                 producao.reverse()
                 for simbolo in producao:
                     pilha.insert(0, simbolo)
-                print(f"Nova pilha após a produção: {pilha}")
+
+                if modo_debug:
+                    print(f"Nova pilha após a produção: {pilha}")
             else:
-                print("Produção epsilon (sem símbolos a adicionar à pilha)")
+                if modo_debug:
+                    print("Produção epsilon (sem símbolos a adicionar à pilha)")
 
         topo_pilha = pilha[0]
 
     if sucesso:
         print("\nParsing concluído com sucesso!")
-        print("\nTokens de entrada:", tokens_de_entrada)
-        print("\nMatches realizados:", matchs_realizados)
+        print("\nNumero de matches: ", len(matchs_realizados))
+        print("\nSequências de matches:");
+        for indice, match in enumerate(matchs_realizados, start=1):  # start=1 para começar a contagem do índice a partir de 1
+            print(f"{indice}. {match}")
+            
     else:
         print("\nParsing falhou.")
-        print("\nTokens de entrada:", tokens_de_entrada)
-        print("\nMatches realizados:", matchs_realizados)
 
 def main():
     if len(sys.argv) != 2:
