@@ -85,7 +85,7 @@ Para rodar o projeto, siga os passos abaixo:
    python3 main.py arquivo_certo.txt
    ```
 
-### Observação: Modo Debug
+### Observação: Modo Debugcl
 
 O projeto inclui uma funcionalidade de modo debug que permite acompanhar o processo de parsing com mais detalhes. Quando o modo de debug está ativado, o sistema imprime informações sobre a pilha, os tokens processados e as produções aplicadas durante a execução do parser.
 
