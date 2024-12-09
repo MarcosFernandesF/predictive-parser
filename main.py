@@ -5,41 +5,54 @@
 
 import sys
 import os
-from lexer_analyzer import Lexer
+from analizador_lexico import Lexer
 
 def parse(tokens_de_entrada, tabela_de_parsing, terminais):
-    modo_debug = False;
+
+    modo_debug = False; # Define se informações de debug serão exibidas.
 
     if modo_debug:
         print("Iniciando o parser com os tokens de entrada:", tokens_de_entrada)
 
+    # Inicializa a pilha com o símbolo inicial e o marcador final
     pilha = ["MAIN", "$"]
     indice_simbolo_atual = 0
     topo_pilha = pilha[indice_simbolo_atual]
     sucesso = True
 
+    # Armazena matchs realizados para exibição posterior
     matchs_realizados = []
 
+    # Enquanto o topo da pilha for diferente de $.
     while topo_pilha != "$":
+
         simbolo_atual = tokens_de_entrada[indice_simbolo_atual]
         
         if modo_debug:
             print(f"\nPilha: {pilha} | Símbolo atual: {simbolo_atual}")
 
+         # Caso terminal na pilha seja igual ao token atual = MATCH.
         if topo_pilha == simbolo_atual:
             matchs_realizados.append(f"{topo_pilha} == {simbolo_atual}")
             pilha.pop(0)
             indice_simbolo_atual += 1
+
             if modo_debug:
                 print(f"MATCH {topo_pilha} com {simbolo_atual}")
+
+        # Caso de erro: símbolo na pilha é terminal, mas não casa com o token atual.
         elif topo_pilha in terminais:
             print(f"ERRO: Símbolo terminal não está na lista de terminais: {topo_pilha}")
             sucesso = False
             break
+
+        # Caso de erro: produção não encontrada na tabela.
         elif topo_pilha not in tabela_de_parsing or simbolo_atual not in tabela_de_parsing[topo_pilha]:
             print(f"ERRO: Não existe produção para: {topo_pilha} com {simbolo_atual}")
             sucesso = False
             break
+
+        # Produção encontrada na tabela
         else:
             producao = tabela_de_parsing[topo_pilha][simbolo_atual]
 
@@ -64,10 +77,10 @@ def parse(tokens_de_entrada, tabela_de_parsing, terminais):
 
     if sucesso:
         print("\nParsing concluído com sucesso!")
-        print("\nNumero de matches: ", len(matchs_realizados))
         print("\nSequências de matches:");
         for indice, match in enumerate(matchs_realizados, start=1):  # start=1 para começar a contagem do índice a partir de 1
             print(f"{indice}. {match}")
+        print("\nNumero de matches: ", len(matchs_realizados))
             
     else:
         print("\nParsing falhou.")

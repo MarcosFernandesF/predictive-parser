@@ -5,7 +5,7 @@
 
 import ply.lex as lex
 
-# Lista de tokens
+# Lista de tokens disponíveis
 tokens = [
     'ID', 'NUM', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE',
     'LT', 'GT', 'LE', 'GE', 'EQ', 'NE',
@@ -27,7 +27,7 @@ reservadas = {
 # Adicionando palavras reservadas aos tokens
 tokens += list(reservadas.values())
 
-# Expressões regulares simples
+# Expressões regulares simples para operadores e símbolos
 t_PLUS = r'\+'
 t_MINUS = r'-'
 t_TIMES = r'\*'
@@ -46,28 +46,28 @@ t_RBRACE = r'\}'
 t_COMMA = r','
 t_SEMICOLON = r';'
 
-# Função para identificadores que terminam com parênteses
+# Reconhece identificadores terminados com '('
 def t_ID_LPAREN(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*\('
     t.type = 'ID_LPAREN'
     return t
 
-# Função para identificar IDs e palavras reservadas
+# Reconhece identificadores e palavras reservadas
 def t_ID(t):
     r'[a-zA-Z_][a-zA-Z0-9_]*'
     t.type = reservadas.get(t.value, 'ID')  # Verifica se é uma palavra reservada
     return t
 
-# Função para números
+# Reconhece números
 def t_NUM(t):
     r'\d+'
     t.value = int(t.value)  # Converte para inteiro
     return t
 
-# Caracteres ignorados
+# Ignora espaços e tabulações
 t_ignore = ' \t\n'
 
-# Função para tratar erros
+# Lida com caracteres inválidos
 def t_error(t):
     print(f"Caractere inválido: {t.value[0]}")
     t.lexer.skip(1)
