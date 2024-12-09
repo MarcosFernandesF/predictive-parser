@@ -1,3 +1,8 @@
+#####################################################
+# Parte 3 - Parser Preditivo para linguagem dada.   #
+# Autor - Marcos Roberto Fernandes Filho (22100915) #
+#####################################################
+
 import ply.lex as lex
 
 # Lista de tokens

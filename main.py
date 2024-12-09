@@ -1,3 +1,8 @@
+#####################################################
+# Parte 3 - Parser Preditivo para linguagem dada.   #
+# Autor - Marcos Roberto Fernandes Filho (22100915) #
+#####################################################
+
 import sys
 import os
 from lexer_analyzer import Lexer
