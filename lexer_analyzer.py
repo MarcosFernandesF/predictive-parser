@@ -1,3 +1,8 @@
+#####################################################
+# Parte 3 - Parser Preditivo para linguagem dada.   #
+# Autor - Marcos Roberto Fernandes Filho (22100915) #
+#####################################################
+
 import ply.lex as lex
 
 # Lista de tokens
@@ -5,7 +10,7 @@ tokens = [
     'ID', 'NUM', 'PLUS', 'MINUS', 'TIMES', 'DIVIDE',
     'LT', 'GT', 'LE', 'GE', 'EQ', 'NE',
     'ASSIGN', 'LPAREN', 'RPAREN', 'LBRACE', 'RBRACE', 'COMMA', 'SEMICOLON',
-    'ID_LPAREN', 'ENDIF'
+    'ID_LPAREN'
 ]
 
 # Palavras reservadas
